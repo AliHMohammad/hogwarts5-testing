@@ -1,5 +1,6 @@
 package dk.kea.dat3js.hogwarts5.students;
 
+import dk.kea.dat3js.hogwarts5.common.PersonWithNames;
 import dk.kea.dat3js.hogwarts5.house.House;
 import jakarta.persistence.*;
 
@@ -7,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Student {
+public class Student implements PersonWithNames {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -94,43 +95,7 @@ public class Student {
         return Objects.hash(getFirstName(), getMiddleName(), getLastName(), getHouse().getName());
     }
 
-    public String getFullName() {
-        return firstName + " " + (middleName != null ? middleName + " " : "") + lastName;
-    }
 
-    public void setFullName(String fullName) {
-        // Null
-        if (fullName == null) return;
-
-        int firstSpace = fullName.indexOf(" ");
-        int lastSpace = fullName.lastIndexOf(" ");
-
-        // First name only or Empty string
-        if (firstSpace == -1) {
-            setFirstName(fullName);
-            setMiddleName(null);
-            setLastName(null);
-            return;
-        }
-
-        setFirstName(fullName.substring(0, firstSpace));
-        setMiddleName((firstSpace != lastSpace ? fullName.substring(firstSpace + 1, lastSpace) : null));
-        setLastName(fullName.substring(lastSpace + 1));
-    }
-
-    private String capitalize(String name) {
-        if (name == null) return null;
-        // Empty or one letter
-        if (name.length() < 2) return name.toUpperCase();
-
-        // Recursion, Hvis mellemnavn består af flere navne
-        if (name.contains(" ")){
-            int space = name.indexOf(" ");
-            return capitalize(name.substring(0, space)) + " " + capitalize(name.substring(space + 1));
-        }
-
-        return name.substring(0, 1).toUpperCase()+name.substring(1).toLowerCase();
-    }
 
 
 
