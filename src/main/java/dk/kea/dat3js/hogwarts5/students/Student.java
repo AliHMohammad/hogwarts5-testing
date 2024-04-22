@@ -19,6 +19,8 @@ public class Student implements PersonWithNames {
     private House house;
     private Integer schoolYear; // 1-7
 
+    private Boolean prefect;
+
     public Student() {
     }
 
@@ -95,8 +97,11 @@ public class Student implements PersonWithNames {
         return Objects.hash(getFirstName(), getMiddleName(), getLastName(), getHouse().getName());
     }
 
+    public Boolean getPrefect() {
+        return prefect;
+    }
 
-
-
-
+    public void setPrefect(Boolean prefect) {
+        this.prefect = prefect;
+    }
 }
