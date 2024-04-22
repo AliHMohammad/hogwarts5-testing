@@ -27,9 +27,6 @@ class PrefectServiceTest {
     private StudentRepository studentRepository;
 
     @Mock
-    private HouseRepository houseRepository;
-
-    @Mock
     private StudentService studentService;
 
     @InjectMocks

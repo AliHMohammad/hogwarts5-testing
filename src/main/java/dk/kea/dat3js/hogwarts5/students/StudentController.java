@@ -1,5 +1,7 @@
 package dk.kea.dat3js.hogwarts5.students;
 
+import dk.kea.dat3js.hogwarts5.prefects.PrefectService;
+import org.apache.coyote.BadRequestException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,9 +12,11 @@ import java.util.List;
 public class StudentController {
 
     private final StudentService studentService;
+    private final PrefectService prefectService;
 
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentService studentService, PrefectService prefectService) {
         this.studentService = studentService;
+        this.prefectService = prefectService;
     }
 
     // get all students
@@ -46,5 +50,15 @@ public class StudentController {
     @DeleteMapping("/{id}")
     public ResponseEntity<StudentResponseDTO> deleteStudent(@PathVariable int id) {
         return ResponseEntity.of(studentService.deleteById(id));
+    }
+
+    @DeleteMapping("{id}/prefect")
+    public ResponseEntity<StudentResponseDTO> removeStudentPrefect(@PathVariable("id") Integer studentId) {
+        return ResponseEntity.ok(prefectService.removeStudentPrefect(studentId));
+    }
+
+    @PostMapping("{id}/prefect")
+    public ResponseEntity<StudentResponseDTO> makeStudentPrefect(@PathVariable("id") Integer studentId) throws BadRequestException {
+        return ResponseEntity.ok(prefectService.makeStudentPrefect(studentId));
     }
 }

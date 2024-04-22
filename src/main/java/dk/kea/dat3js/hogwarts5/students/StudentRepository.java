@@ -8,4 +8,6 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     List<Student> findAllByHouseName(String name);
 
     List<Student> findAllByHouseNameAndPrefectIsTrue(String name);
+
+    List<Student> findAllByPrefectIsTrue();
 }

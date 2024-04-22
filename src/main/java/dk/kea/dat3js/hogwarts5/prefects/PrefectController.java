@@ -5,6 +5,8 @@ import org.apache.coyote.BadRequestException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController()
 @RequestMapping(path = "/prefects")
 public class PrefectController {
@@ -26,12 +28,12 @@ public class PrefectController {
     }
 
     @GetMapping
-    public ResponseEntity<StudentResponseDTO> getPrefects() {
+    public ResponseEntity<List<StudentResponseDTO>> getPrefects() {
         return ResponseEntity.ok(prefectService.getPrefects());
     }
 
     @GetMapping("house/{houseId}")
-    public ResponseEntity<StudentResponseDTO> getPrefectsByHouseName(@PathVariable("houseId") String houseName) {
+    public ResponseEntity<List<StudentResponseDTO>> getPrefectsByHouseName(@PathVariable("houseId") String houseName) {
         return ResponseEntity.ok(prefectService.getPrefectsByHouseName(houseName));
     }
 

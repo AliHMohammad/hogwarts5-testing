@@ -16,12 +16,10 @@ public class PrefectService {
 
 
     private final StudentRepository studentRepository;
-    private final HouseRepository houseRepository;
     private final StudentService studentService;
 
     public PrefectService(StudentRepository studentRepository, HouseRepository houseRepository, StudentService studentService) {
         this.studentRepository = studentRepository;
-        this.houseRepository = houseRepository;
         this.studentService = studentService;
     }
 
@@ -46,19 +44,31 @@ public class PrefectService {
     }
 
     public StudentResponseDTO getSinglePrefectByStudentId(Integer id) {
-        return null;
+        Student studentInDb = studentRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Student with id " + id + " not found"));
+
+        if (!studentInDb.getPrefect())
+            throw new EntityNotFoundException("Student with id " + id + " is not prefect");
+
+        return studentService.toDTO(studentInDb);
     }
 
-    public StudentResponseDTO getPrefects() {
-        return null;
+    public List<StudentResponseDTO> getPrefects() {
+        return studentRepository.findAllByPrefectIsTrue().stream().map(studentService::toDTO).toList();
     }
 
-    public StudentResponseDTO getPrefectsByHouseName(String houseName) {
-        return null;
+    public List<StudentResponseDTO> getPrefectsByHouseName(String houseName) {
+        return studentRepository.findAllByHouseNameAndPrefectIsTrue(houseName).stream().map(studentService::toDTO).toList();
     }
 
     public StudentResponseDTO removeStudentPrefect(Integer studentId) {
-        return null;
+        Student studentInDb = studentRepository.findById(studentId)
+                .orElseThrow(() -> new EntityNotFoundException("Student with id " + studentId + " not found"));
+
+        studentInDb.setPrefect(false);
+
+        studentRepository.save(studentInDb);
+        return studentService.toDTO(studentInDb);
     }
 
 
