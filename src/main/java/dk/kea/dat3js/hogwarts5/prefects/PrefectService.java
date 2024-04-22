@@ -35,6 +35,11 @@ public class PrefectService {
         if (prefectsInHouse.size() >= 2)
             throw new BadRequestException("There already exists two students in the house");
 
+        for (Student prefectStudent : prefectsInHouse) {
+            if (prefectStudent.getGender() == studentInDb.getGender())
+                throw new BadRequestException("There already exists a" + studentInDb.getGender().name().toLowerCase() + " prefect student in this house");
+        }
+
         studentInDb.setPrefect(true);
         studentRepository.save(studentInDb);
         return studentService.toDTO(studentInDb);

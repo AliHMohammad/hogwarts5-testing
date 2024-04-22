@@ -21,20 +21,23 @@ public class Student implements PersonWithNames {
 
     private Boolean prefect;
 
+    private Gender gender;
+
     public Student() {
     }
 
     public Student(String firstName, String lastName, House house, int schoolYear) {
-        this(firstName, null, lastName, house, schoolYear, null);
+        this(firstName, null, lastName, house, schoolYear, null, null);
     }
 
-    public Student(String firstName, String middleName, String lastName, House house, int schoolYear, Boolean prefect) {
+    public Student(String firstName, String middleName, String lastName, House house, int schoolYear, Boolean prefect, String gender) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.house = house;
         this.schoolYear = schoolYear;
         this.prefect = prefect;
+        setGender(gender);
     }
 
     public int getId() {
@@ -107,4 +110,29 @@ public class Student implements PersonWithNames {
 
         this.prefect = prefect;
     }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        if (gender == null){
+            return;
+        }
+        this.gender = gender;
+    }
+
+    public void setGender(String gender) {
+        if (gender == null || gender.isEmpty()) {
+            return;
+        }
+
+        try {
+            setGender(Gender.valueOf(gender.toUpperCase()));
+        } catch (IllegalArgumentException e) {
+            System.out.println("gender must either be 'MALE' or 'FEMALE'");
+        }
+
+    }
+
 }

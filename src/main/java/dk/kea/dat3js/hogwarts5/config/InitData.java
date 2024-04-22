@@ -41,14 +41,14 @@ public class InitData implements CommandLineRunner {
     Set<Student> existingStudents = new HashSet<>();
     existingStudents.addAll(studentRepository.findAll());
 
-    Student harry = new Student("Harry", "James", "Potter", gryffindor, 5, false);
-    Student hermione = new Student("Hermione", "Jean", "Granger", gryffindor, 5, false);
-    Student ron = new Student("Ron", "Bilius", "Weasley", gryffindor, 5, false);
-    Student neville = new Student("Neville", "Frank", "Longbottom", gryffindor, 5, false);
-    Student ginny = new Student("Ginny", "Molly", "Weasley", gryffindor, 5, false);
-    Student fred = new Student("Fred", "Gideon", "Weasley", gryffindor, 5, false);
-    Student george = new Student("George", "Fabian", "Weasley", gryffindor, 5, false);
-    Student percy = new Student("Percy", "Ignatius", "Weasley", gryffindor, 5, false);
+    Student harry = new Student("Harry", "James", "Potter", gryffindor, 5, false, null);
+    Student hermione = new Student("Hermione", "Jean", "Granger", gryffindor, 5, false, null);
+    Student ron = new Student("Ron", "Bilius", "Weasley", gryffindor, 5, false, null);
+    Student neville = new Student("Neville", "Frank", "Longbottom", gryffindor, 5, false, null);
+    Student ginny = new Student("Ginny", "Molly", "Weasley", gryffindor, 5, false, null);
+    Student fred = new Student("Fred", "Gideon", "Weasley", gryffindor, 5, false, null);
+    Student george = new Student("George", "Fabian", "Weasley", gryffindor, 5, false, null);
+    Student percy = new Student("Percy", "Ignatius", "Weasley", gryffindor, 5, false, null);
 
     Student draco = new Student("Draco", "Malfoy", slytherin, 5);
     Student cedric = new Student("Cedric", "Diggory", hufflepuff, 6);
