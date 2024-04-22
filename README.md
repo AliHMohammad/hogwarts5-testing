@@ -21,7 +21,8 @@ Jeg har testet edge-cases, da det gav mest mening. Navngivningen på testene er
 
 ### PrefectService
 
-I PrefectService-klassen har testing været mere omstændigt, da der skulle mockes repository-laget og StudentService for at tilgå **toDTO()** metoden ifm. 
+I PrefectService-klassen har testing været mere omstændigt, da der skulle mockes repository-laget vha. Mockito og StudentService for at tilgå **toDTO()** 
+metoden ifm. 
 return. Ved "unhappy path" har jeg valgt at kaste exceptions, som returnerer en passende 4xx http status code fejl i controller-laget. Disse exceptions 
 bliver der også taget højde for i mine tests af PrefectService, hvor jeg anvender **assertThrows()**.
 
