@@ -1,6 +1,7 @@
 package dk.kea.dat3js.hogwarts5.prefects;
 
 import dk.kea.dat3js.hogwarts5.students.StudentResponseDTO;
+import org.apache.coyote.BadRequestException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,13 +15,13 @@ public class PrefectController {
         this.prefectService = prefectService;
     }
 
-    @PostMapping
-    public ResponseEntity<StudentResponseDTO> makeStudentPrefect(@RequestBody PrefectRequestDTO prefectRequestDTO) {
-        return ResponseEntity.ok(prefectService.makeStudentPrefect(prefectRequestDTO));
+    @PostMapping("{id}")
+    public ResponseEntity<StudentResponseDTO> makeStudentPrefect(@PathVariable("id") Integer studentId) throws BadRequestException {
+        return ResponseEntity.ok(prefectService.makeStudentPrefect(studentId));
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<StudentResponseDTO> getSinglePrefectByStudentId(@PathVariable("id") long id) {
+    public ResponseEntity<StudentResponseDTO> getSinglePrefectByStudentId(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(prefectService.getSinglePrefectByStudentId(id));
     }
 
@@ -30,12 +31,12 @@ public class PrefectController {
     }
 
     @GetMapping("house/{houseId}")
-    public ResponseEntity<StudentResponseDTO> getPrefectsByHouseId(@PathVariable("houseId") long houseId) {
-        return ResponseEntity.ok(prefectService.getPrefectsByHouseId(houseId));
+    public ResponseEntity<StudentResponseDTO> getPrefectsByHouseName(@PathVariable("houseId") String houseName) {
+        return ResponseEntity.ok(prefectService.getPrefectsByHouseName(houseName));
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<StudentResponseDTO> removeStudentPrefect(@PathVariable("id") long studentId) {
+    public ResponseEntity<StudentResponseDTO> removeStudentPrefect(@PathVariable("id") Integer studentId) {
         return ResponseEntity.ok(prefectService.removeStudentPrefect(studentId));
     }
 

@@ -25,15 +25,16 @@ public class Student implements PersonWithNames {
     }
 
     public Student(String firstName, String lastName, House house, int schoolYear) {
-        this(firstName, null, lastName, house, schoolYear);
+        this(firstName, null, lastName, house, schoolYear, null);
     }
 
-    public Student(String firstName, String middleName, String lastName, House house, int schoolYear) {
+    public Student(String firstName, String middleName, String lastName, House house, int schoolYear, Boolean prefect) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.house = house;
         this.schoolYear = schoolYear;
+        this.prefect = prefect;
     }
 
     public int getId() {
@@ -102,6 +103,8 @@ public class Student implements PersonWithNames {
     }
 
     public void setPrefect(Boolean prefect) {
+        if (schoolYear < 5) return;
+
         this.prefect = prefect;
     }
 }

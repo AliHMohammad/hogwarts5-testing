@@ -17,7 +17,8 @@ class StudentTest {
                 "Haider",
                 "Mohammad",
                 null,
-                0
+                0,
+                null
         );
 
         // Act
@@ -53,7 +54,8 @@ class StudentTest {
                 "middle",
                 "last",
                 null,
-                0
+                0,
+                null
         );
 
         String fullName = "Harry James Potter";
@@ -76,7 +78,8 @@ class StudentTest {
                 "middle",
                 "last",
                 null,
-                0
+                0,
+                null
         );
 
         String fullName = "Harry Potter";
@@ -100,7 +103,8 @@ class StudentTest {
                 "middle",
                 "last",
                 null,
-                0
+                0,
+                null
         );
 
         String fullName = "";
@@ -123,7 +127,8 @@ class StudentTest {
                 "middle",
                 "last",
                 null,
-                0
+                0,
+                null
         );
 
         // Act
@@ -143,7 +148,8 @@ class StudentTest {
                 "middle",
                 "last",
                 null,
-                0
+                0,
+                null
         );
 
         // Act
@@ -163,7 +169,8 @@ class StudentTest {
                 "middle",
                 "last",
                 null,
-                0
+                0,
+                null
         );
 
         // Act
@@ -183,7 +190,8 @@ class StudentTest {
                 "middle",
                 "last",
                 null,
-                0
+                0,
+                null
         );
 
         // Act
@@ -205,7 +213,8 @@ class StudentTest {
                 "middle",
                 "last",
                 null,
-                0
+                0,
+                null
         );
 
         // Act
@@ -227,7 +236,8 @@ class StudentTest {
                 "middle",
                 "last",
                 null,
-                0
+                0,
+                null
         );
 
         // Act
@@ -239,6 +249,45 @@ class StudentTest {
         assertEquals("Harry", student.getFirstName());
         assertEquals("J", student.getMiddleName());
         assertEquals("P", student.getLastName());
+    }
+
+
+    @Test
+    void makeFifthYearStudentPrefect() {
+        // Arrange
+        Student student = new Student(
+                "first",
+                "middle",
+                "last",
+                null,
+                5,
+                false
+        );
+
+        // Act
+        student.setPrefect(true);
+
+        // Assert
+        assertTrue(student.getPrefect());
+    }
+
+    @Test
+    void makeFourthYearStudentPrefect() {
+        // Arrange
+        Student student = new Student(
+                "first",
+                "middle",
+                "last",
+                null,
+                4,
+                false
+        );
+
+        // Act
+        student.setPrefect(true);
+
+        // Assert
+        assertFalse(student.getPrefect());
     }
 
 }

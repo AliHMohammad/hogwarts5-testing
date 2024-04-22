@@ -12,22 +12,22 @@ import java.util.List;
 @RequestMapping("/houses")
 public class HouseController {
 
-  private final HouseService houseService;
+    private final HouseService houseService;
 
-  public HouseController(HouseService houseService) {
-    this.houseService = houseService;
-  }
+    public HouseController(HouseService houseService) {
+        this.houseService = houseService;
+    }
 
-  // get all houses
-  @GetMapping
-  public List<House> getAllHouses() {
-    return houseService.findAll();
-  }
+    // get all houses
+    @GetMapping
+    public List<House> getAllHouses() {
+        return houseService.findAll();
+    }
 
-  // get house by id
-  @GetMapping("/{id}")
-  public ResponseEntity<House> getHouse(@PathVariable String id) {
-    return ResponseEntity.of(houseService.findById(id));
-  }
+    // get house by id
+    @GetMapping("/{id}")
+    public ResponseEntity<House> getHouse(@PathVariable String id) {
+        return ResponseEntity.of(houseService.findById(id));
+    }
 
 }
