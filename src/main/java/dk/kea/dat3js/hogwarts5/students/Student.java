@@ -98,18 +98,13 @@ public class Student {
     }
 
     public void setFullName(String fullName) {
+        // Null
         if (fullName == null) return;
-
-        if (fullName.isEmpty()) {
-            setFirstName("");
-            setMiddleName(null);
-            setLastName(null);
-            return;
-        }
 
         int firstSpace = fullName.indexOf(" ");
         int lastSpace = fullName.lastIndexOf(" ");
 
+        // First name only or Empty string
         if (firstSpace == -1) {
             setFirstName(fullName);
             setMiddleName(null);
