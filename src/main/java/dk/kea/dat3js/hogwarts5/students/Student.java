@@ -3,6 +3,7 @@ package dk.kea.dat3js.hogwarts5.students;
 import dk.kea.dat3js.hogwarts5.house.House;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -45,7 +46,7 @@ public class Student {
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.firstName = capitalize(firstName);
     }
 
     public String getMiddleName() {
@@ -53,7 +54,7 @@ public class Student {
     }
 
     public void setMiddleName(String middleName) {
-        this.middleName = middleName;
+        this.middleName = capitalize(middleName);
     }
 
     public String getLastName() {
@@ -61,7 +62,7 @@ public class Student {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastName = capitalize(lastName);
     }
 
     public House getHouse() {
@@ -116,5 +117,21 @@ public class Student {
         setMiddleName((firstSpace != lastSpace ? fullName.substring(firstSpace + 1, lastSpace) : null));
         setLastName(fullName.substring(lastSpace + 1));
     }
+
+    private String capitalize(String name) {
+        if (name == null) return null;
+        // Empty or one letter
+        if (name.length() < 2) return name.toUpperCase();
+
+        // Recursion, Hvis mellemnavn består af flere navne
+        if (name.contains(" ")){
+            int space = name.indexOf(" ");
+            return capitalize(name.substring(0, space)) + " " + capitalize(name.substring(space + 1));
+        }
+
+        return name.substring(0, 1).toUpperCase()+name.substring(1).toLowerCase();
+    }
+
+
 
 }
