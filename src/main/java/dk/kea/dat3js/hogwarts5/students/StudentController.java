@@ -2,6 +2,7 @@ package dk.kea.dat3js.hogwarts5.students;
 
 import dk.kea.dat3js.hogwarts5.prefects.PrefectService;
 import org.apache.coyote.BadRequestException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,8 +34,9 @@ public class StudentController {
 
     // create post, put, patch, delete methods
     @PostMapping
-    public StudentResponseDTO createStudent(@RequestBody StudentRequestDTO student) {
-        return studentService.save(student);
+    public ResponseEntity<StudentResponseDTO> createStudent(@RequestBody StudentRequestDTO student) {
+        //return new ResponseEntity<>(studentService.save(student), HttpStatus.CREATED);
+        return ResponseEntity.status(201).body(studentService.save(student));
     }
 
     @PutMapping("/{id}")
