@@ -1,8 +1,10 @@
 package dk.kea.dat3js.hogwarts5.ghosts;
 
+import dk.kea.dat3js.hogwarts5.house.House;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Ghost {
@@ -12,16 +14,26 @@ public class Ghost {
     private Integer id;
     private String name;
     private String realName;
-    private String house;
+
+    @ManyToOne
+    private House house;
 
 
     public Ghost() {
     }
 
-    public Ghost(Integer id, String name, String realName, String house) {
+    public Ghost(Integer id, String name, String realName, House house) {
         this.id = id;
         this.name = name;
         this.realName = realName;
+        this.house = house;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
         this.house = house;
     }
 
@@ -49,11 +61,5 @@ public class Ghost {
         this.realName = realName;
     }
 
-    public String getHouse() {
-        return house;
-    }
 
-    public void setHouse(String house) {
-        this.house = house;
-    }
 }
