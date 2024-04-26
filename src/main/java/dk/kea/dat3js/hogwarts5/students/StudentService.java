@@ -81,7 +81,7 @@ public class StudentService {
                 studentEntity.getHouse().getName(),
                 studentEntity.getSchoolYear(),
                 studentEntity.getPrefect(),
-                (studentEntity.getGender().toString().equals("MALE") ? "Male" : "Female")
+                (studentEntity.getGender() == null ? null : studentEntity.getGender().toString().equals("MALE") ? "Male" : "Female")
         );
 
         return dto;
